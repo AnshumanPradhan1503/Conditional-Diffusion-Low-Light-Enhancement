@@ -95,6 +95,8 @@ These findings indicate that the investigated conditioning strategies do not con
 ```text
 Conditional-Diffusion-Low-Light-Enhancement/
 ├── .gitignore
+├── README.md
+├── requirements.txt
 ├── analyze_dataset.py
 ├── eda_images.py
 ├── statistical_eda.py
@@ -121,7 +123,7 @@ Conditional-Diffusion-Low-Light-Enhancement/
     └── split.py
 ```
 
-The repository also contains additional training, evaluation, analysis, and diagnostic scripts. The structure above highlights the main components rather than listing every file.
+The tree highlights selected project components rather than listing every file. Additional training, evaluation, analysis, and diagnostic scripts may also be present.
 
 ## Dataset
 
@@ -133,17 +135,73 @@ Dataset access, directory layout, and split configuration must be verified befor
 
 ## Installation and Usage
 
-The project was developed with Python and PyTorch, and the primary baseline was trained on a CPU.
+The project was developed using Python 3.11 and PyTorch, with the primary baseline trained on a CPU.
 
-Before reproducing an experiment:
+### Prerequisites
 
-1. Install a compatible Python and PyTorch environment.
-2. Install the project's required dependencies.
-3. Obtain and prepare the LOLv2-real dataset.
-4. Verify the dataset and split paths in the project configuration.
-5. Run the appropriate training, evaluation, or generation script from the project root.
+- Python 3.11
+- Git
+- A compatible CPU build of PyTorch and torchvision
+- The packages listed in `requirements.txt`
+- The LOLv2-real dataset, obtained separately
 
-Exact installation commands and execution examples will be documented after verifying the dependency list and the paths expected by the current scripts.
+Training diffusion models can be computationally expensive, especially on a CPU.
+
+### 1. Clone the repository
+
+Open PowerShell and run:
+
+```powershell
+git clone https://github.com/AnshumanPradhan1503/Conditional-Diffusion-Low-Light-Enhancement.git
+cd Conditional-Diffusion-Low-Light-Enhancement
+```
+
+### 2. Create an isolated Python environment
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+```
+
+If PowerShell blocks environment activation, use the environment's Python executable directly:
+
+```powershell
+.\.venv\Scripts\python.exe --version
+```
+
+### 3. Install CPU-compatible PyTorch
+
+The following command requests CPU wheels for the pinned PyTorch and torchvision versions:
+
+```powershell
+python -m pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+### 4. Install the remaining dependencies
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+### 5. Verify the installation
+
+```powershell
+python -c "import torch, torchvision, numpy, PIL, pandas, matplotlib, scipy, skimage, tqdm; print('Dependencies imported successfully'); print('PyTorch:', torch.__version__); print('Torchvision:', torchvision.__version__); print('NumPy:', numpy.__version__); print('CUDA available:', torch.cuda.is_available())"
+python -m pip check
+```
+
+A successful import check confirms that the listed packages load in the active environment. A clean `pip check` indicates that pip has not detected broken declared dependencies in that environment.
+
+### 6. Prepare the dataset
+
+Obtain the LOLv2-real dataset from its authorized distribution source. Configure the dataset and split paths to match the current data-loading code before running experiments.
+
+### 7. Run an experiment
+
+Run the appropriate training, evaluation, or image-generation script from the repository root. Consult the source code and configuration files for the exact supported commands and required arguments.
+
+Exact execution commands should be confirmed against the current scripts before reproducing an experiment.
 
 ## Reproducibility and Limitations
 
@@ -152,6 +210,7 @@ Exact installation commands and execution examples will be documented after veri
 - Experimental variants may use different configurations and should be compared using consistent evaluation protocols.
 - PSNR and SSIM do not fully capture perceptual quality, naturalness, color fidelity, or downstream usefulness.
 - The reported results should be interpreted as experimental findings, not evidence that diffusion-based enhancement universally outperforms conventional methods.
+- Reproducing the reported metrics requires matching the dataset split, preprocessing, model configuration, checkpoint, sampling procedure, and evaluation protocol.
 
 ## Documentation
 
