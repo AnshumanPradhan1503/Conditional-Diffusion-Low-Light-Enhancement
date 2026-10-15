@@ -1,0 +1,44 @@
+﻿# Dataset and downloaded data
+data/
+
+# Model checkpoints and trained weights
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Generated results and visualizations
+results/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Research papers (keep local; avoid uploading full PDFs)
+research papers/
+
+# Local experimental workspace
+notepad src/
+
+# Temporary Python and test artifacts
+.pytest_cache/
+.mypy_cache/
